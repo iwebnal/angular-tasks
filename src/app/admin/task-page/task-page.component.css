@@ -1,0 +1,27 @@
+h3 {
+    color: #3f7ed0;
+    padding: 20px 0px;
+}
+
+.tasak-label {
+    display: inline-block;
+    min-width: 115px;
+    margin-right: 10px;;
+}
+
+.task-wrapper {
+    margin-bottom: 10px;
+}
+
+.text {
+    display: inline-block;
+    max-width: 600px;
+}
+
+.label-text {
+    vertical-align: top;
+}
+
+.task-page-wrapper {
+    padding: 0px 20px;
+}

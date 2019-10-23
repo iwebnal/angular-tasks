@@ -1,0 +1,29 @@
+.nav-menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 20px;
+    background: #cccccc;
+}
+
+.admin-link, .nav-list, .nav-list li {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.nav-list li {
+    padding: 0px 10px;
+}
+
+.nav-list li.active a {
+    color: #ffffff;
+}
+
+.admin-link, .nav-list li a {
+    text-decoration: none;
+    color: #3f7ed0;
+}
+
+.admin-link:hover, .nav-list li a:hover {
+    color: #ffffff;
+}

@@ -1,0 +1,61 @@
+<div>
+    <nav-menu></nav-menu>
+</div>
+<div *ngIf="form; else loading" class="form-edit-wrapp">
+    <h3>Edit page</h3>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form-control"
+        [ngClass]="{invalid: form.get('title').touched && form.get('title').invalid}">
+            <label for="title">Task title:</label>
+            <input type="text" id="title" formControlName="title" placeholder="Enter title...">
+            <div class="validation"
+            *ngIf="form.get('title').touched && form.get('title').invalid"> 
+                <span *ngIf="form.get('title').errors.required">Enter task title</span>
+            </div>
+        </div>
+        <div class="form-control">
+            <label for="text">Task text:</label>
+            <textarea id="text" cols="30" rows="10" formControlName="text" placeholder="Enter text..."></textarea>
+        </div>
+
+        <div class="form-control">
+            <label for="priority" class="label-priority">Priority:</label>
+            <mat-form-field>
+                <mat-select id="priority" formControlName="priority">
+                    <mat-option *ngFor="let priority of priorities" [value]="priority.name">
+                    {{priority.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    
+        <div class="form-control">
+            <label for="planningTime">Planning time:</label>
+            <input type="number" id="planningTime" formControlName="planningTime" placeholder="Enter planning time...">
+        </div>
+    
+        <div class="form-control">
+            <label for="spendingTime">Spending time:</label>
+            <input type="number" id="spendingTime" formControlName="spendingTime" placeholder="Enter spending time...">
+        </div>
+    
+        <div class="form-control">
+            <label for="status" class="label-status">Status:</label>
+            <mat-form-field>
+                <mat-select id="status" formControlName="status">
+                    <mat-option *ngFor="let status of statuses" [value]="status.name">
+                    {{status.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <button type="submit" [disabled]="form.invalid || submitted">
+            Refresh
+        </button>
+    </form>
+</div>
+
+<ng-template #loading>
+    <p class="loading-box">Loading...</p>
+</ng-template>

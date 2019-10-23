@@ -1,0 +1,76 @@
+.form-create {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px 20px;
+    border: 1px solid #cccccc;
+    margin-top: 20px;
+}
+
+.form-create label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-create button {
+    display: block;
+    margin-top: 10px;
+}
+
+.form-create-wrapp {
+    padding: 0px 20px;
+}
+
+h3 {
+    color: #3f7ed0;
+    padding: 20px 0px;
+}
+
+.form-control {
+    margin-bottom: 15px;
+}
+
+.form-control label {
+    display: inline-block;
+    color: #333;
+    vertical-align: top;
+    min-width: 120px;
+}
+
+.form-control input {
+    height: 25px;
+    line-height: 31px;
+    padding: 3px 5px;
+}
+
+.form-control textarea {
+    padding: 5px 5px;
+}
+
+.label-priority, .label-status {
+    vertical-align: middle !important;
+}
+
+.form-create button {
+    width: 90px;
+    height: 30px;
+    background: #3f7ed0;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.form-create button.disabled {
+    background: #cccccc;
+    color: #1a73e8;
+    cursor: not-allowed;
+}
+
+.valid-info {
+    color: red;
+}
+
+.input-wrapper {
+    display: inline-block;
+}

@@ -1,0 +1,46 @@
+<div>
+    <nav-menu></nav-menu>
+</div>
+<div *ngIf="task$ | async as task; else loading" class="task-page-wrapper">
+    <h3>Task page</h3>
+    <div class="task">
+        <div class="task-top">
+            <span class="tasak-label">Title: </span>
+            <span class="task-author">{{ task.title }}</span>
+        </div>
+        <div class="task-info">
+            <div class="task-wrapper">
+                <span class="tasak-label">Author: </span>
+                <span class="task-author">{{ task.author }}</span>
+            </div>
+            <div class="task-wrapper">
+                <span class="tasak-label">Date: </span>
+                <span class="task-date">{{ task.date | date:'medium' }}</span>
+            </div>
+            <div class="task-wrapper">
+                <span class="tasak-label">Priority: </span>
+                <span class="task-priority">{{ task.priority }}</span>
+            </div>
+            <div class="task-wrapper">
+                <span class="tasak-label">Planning time: </span>
+                <span class="task-planningTime">{{ task.planningTime }}</span>
+            </div>
+            <div class="task-wrapper">
+                <span class="tasak-label">Spending time: </span>
+                <span class="task-spendingTime">{{ task.spendingTime }}</span>
+            </div>
+            <div class="task-wrapper">
+                <span class="tasak-label">Status: </span>
+                <span class="task-status">{{ task.status }}</span>
+            </div>
+        </div>
+        <div class="task-wrapper">
+            <span class="tasak-label label-text">Text: </span>
+            <p class="text">{{ task.text }}</p>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <p class="loading-box">Loading...</p>
+</ng-template>

@@ -1,0 +1,94 @@
+.dashboard-table {
+    width: 100%;
+    padding: 20px 20px;
+}
+
+.dashboard-table thead {
+    width: 100%;
+    padding: 20px 20px;
+}
+
+.dashboard-table thead tr th {
+    background: #cccccc;
+    padding: 10px 10px;
+    color: #333;
+}
+
+.dashboard-table tbody tr td {
+    padding: 10px 10px;
+}
+
+.dashboard-table tbody tr td button {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.dashboard-table tbody tr td a {
+    color: #333;
+}
+
+.table-task-edit {
+    text-decoration: underline;
+}
+
+.dashboard-table tbody tr td a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.dashboard-table tbody tr:hover {
+    border: 1px solid #cccccc;
+    background: #eeeeee;
+}
+
+.buttons-box {
+    text-align: right;
+}
+
+.buttons-box button {
+    width: 60px;
+    height: 30px;
+    background: #3f7ed0;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.delete-button {
+    color: red !important;
+}
+
+.index-box {
+    text-align: center;
+}
+
+.find-form {
+    text-align: center;
+}
+
+.find-form input {
+    width: 80%;
+    height: 35px;
+    line-height: 37px;
+    margin-top: 20px;
+    padding-left: 10px;
+}
+
+.sort-name {
+    position: relative;
+    cursor: pointer;
+}
+
+.sort-icon-box {
+    display: inline-block;
+    position: absolute;
+    top: 9px;
+    right: 12px;
+}
+
+.sort-icon {
+    display: inline-block;
+    width: 12px;
+    height: 7px;
+}

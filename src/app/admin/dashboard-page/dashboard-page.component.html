@@ -1,0 +1,45 @@
+<div>
+    <nav-menu></nav-menu>
+</div>
+<div *ngIf="tasks.length; else loading">
+    <div class="find-form">
+        <input type="text" placeholder="Find task..." [(ngModel)]="searchStr">
+    </div>
+    <table class="dashboard-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th (click)="sort('title')" class="sort-name">
+                    <span>Name</span>
+                    <div class="sort-icon-box">
+                        <img *ngIf="sortDerection === -1" src="../../../assets/img/up-arrow.png" class="sort-icon" title="Sort column">
+                        <img *ngIf="sortDerection === 1" src="../../../assets/img/down-arrow.png" class="sort-icon" title="Sort column">
+                    </div>
+                </th>
+                <th>Date</th>
+                <th>Author</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let task of tasks | searchTasks:searchStr | sortTasks:sortColumn:sortDerection; let i = index">
+                <td class="index-box">{{i + 1}}</td>
+                <td>
+                    <a [routerLink]="['/task', task.id]" title="Open task page" class="table-task-edit">
+                        {{ task.title }}
+                    </a>
+                </td>
+                <td>{{ task.date | date:'medium' }}</td>
+                <td>{{ task.author }}</td>
+                <td class="buttons-box">
+                    <button [routerLink]="['/task', task.id, 'edit']" title="Edit task">Edit</button>
+                    <a class="delete-button" (click)="remove(task.id)" title="Delete task">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #loading>
+    <p class="loading-box">Loading...</p>
+</ng-template>

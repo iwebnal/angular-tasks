@@ -1,0 +1,32 @@
+<div class="form-wrapper">
+    <form class="login-form" [formGroup]="form" (ngSubmit)="submit()">
+        <h2>Log in</h2>
+        <div class="alert-info" *ngIf="message">
+            {{ message }}
+        </div>
+        <div class="form-control"
+        [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid}">
+            <label for="email">Email:</label>
+            <input type="email" id="email" formControlName="email">
+            <div class="validation"
+            *ngIf="form.get('email').touched && form.get('email').invalid">
+                <span *ngIf="form.get('email').errors.required" class="valid-info">Enter email!</span>
+                <span *ngIf="form.get('email').errors.email"  class="valid-info">Enter valid email!!</span>
+            </div>
+        </div>
+        <div class="form-control"
+        [ngClass]="{invalid: form.get('password').touched && form.get('password').invalid}">
+            <label for="password">Password:</label>
+            <input type="password" id="password" formControlName="password">
+            <div class="validation"
+            *ngIf="form.get('password').touched && form.get('password').invalid">
+                <span *ngIf="form.get('password').errors.required" class="valid-info">Enter password!</span>
+                <span *ngIf="form.get('password').errors.minlength" class="valid-info">
+                    Enter {{form.get('password').errors.minlength.requiredLength}} symbols for password!
+                    Now {{form.get('password').errors.minlength.actualLength}} symbols.
+                </span>
+            </div>
+        </div>
+        <button type="submit" [disabled]="form.invalid || submitted" [class.disabled]="form.invalid || submitted">Log in</button>
+    </form>
+</div>
