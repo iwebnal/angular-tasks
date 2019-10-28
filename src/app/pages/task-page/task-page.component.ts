@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { TaskService } from '../../shared/task.serice';
 import { Observable } from 'rxjs';
 import { Task } from '../../shared/interfaces';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
+import { TaskService } from 'src/app/shared/services/task.service';
 
 @Component({
   selector: 'app-task-page',
@@ -22,7 +22,15 @@ export class TaskPageComponent implements OnInit {
   ngOnInit() {
     this.task$ = this.route.params
       .pipe(switchMap((params: Params) => {
-        return this.taskService.getById(params['id'])
+        return this.taskService.getById(params['id']).pipe(
+          map((task: Task) => {
+              return {
+                  ...task,
+                  id: params['id'],
+                  date: new Date(task.date)
+              }
+          })
+      )
       }))
   }
 

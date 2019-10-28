@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Task, Priority, Status } from 'src/app/shared/interfaces';
-import { TaskService } from 'src/app/shared/task.serice';
+import { Task, Priority, Status, FbCreateResponse } from 'src/app/shared/interfaces';
 import { Router } from '@angular/router';
+import { TaskService } from 'src/app/shared/services/task.service';
+import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-create-page',
@@ -10,24 +12,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-page.component.css']
 })
 export class CreatePageComponent implements OnInit {
-
-  priorities: Priority[] = [
-    {name: 'low-priority'},
-    {name: 'medium-priority'},
-    {name: 'high-priority'}
-  ];
-
-  statuses: Status[] = [
-    {name: 'Doing'},
-    {name: 'Testing'}
-  ];
-
   form: FormGroup;
+  public priorities: Priority[];
+  public statuses: Status[];
 
   constructor(
     private tasksService: TaskService,
     private router: Router
   ) {
+    this.priorities = environment.priorities;
+    this.statuses = environment.statuses;
   }
 
   ngOnInit() {
@@ -58,7 +52,16 @@ export class CreatePageComponent implements OnInit {
       status : this.form.value.status,
     }
 
-    this.tasksService.create(task).subscribe(() => {
+    this.tasksService.create(task).pipe(
+      map((response: FbCreateResponse) => {
+        return {
+            ...task,
+            id: response.name,
+            date: new Date(task.date)
+        }
+      })
+    )
+    .subscribe(() => {
       this.form.reset();
       this.router.navigate(['/dashboard']);
     });

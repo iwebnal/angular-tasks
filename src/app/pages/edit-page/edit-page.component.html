@@ -1,6 +1,3 @@
-<div>
-    <nav-menu></nav-menu>
-</div>
 <div *ngIf="form; else loading" class="form-edit-wrapp">
     <h3>Edit page</h3>
     <form [formGroup]="form" (ngSubmit)="submit()">

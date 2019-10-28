@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../shared/services/auth.service';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
-  selector: 'nav-menu',
-  templateUrl: './nav-menu.component.html',
-  styleUrls: ['./nav-menu.component.css']
+  selector: 'app-page-layout',
+  templateUrl: './main-page.component.html',
+  styleUrls: ['./main-page.component.css']
 })
-export class NavMenuComponent implements OnInit {
+export class MainPageComponent implements OnInit {
 
   constructor(
     private router: Router,

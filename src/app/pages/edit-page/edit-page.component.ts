@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { TaskService } from 'src/app/shared/task.serice';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 import { Task, Priority, Status } from 'src/app/shared/interfaces';
+import { environment } from 'src/environments/environment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { TaskService } from 'src/app/shared/services/task.service';
 
 @Component({
   selector: 'app-edit-page',
@@ -12,33 +13,36 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./edit-page.component.css']
 })
 export class EditPageComponent implements OnInit, OnDestroy {
-
-  priorities: Priority[] = [
-    {name: 'low-priority'},
-    {name: 'medium-priority'},
-    {name: 'high-priority'}
-  ];
-
-  statuses: Status[] = [
-    {name: 'Doing'},
-    {name: 'Testing'}
-  ];
-
   form: FormGroup;
   task: Task;
   submitted: boolean = false;
   updateSubscription: Subscription;
 
+  public priorities: Priority[];
+  public statuses: Status[];
+
   constructor(
     private route: ActivatedRoute,
     private taskService: TaskService,
     private router: Router,
-  ) { }
+  ) {
+    this.priorities = environment.priorities;
+    this.statuses = environment.statuses;
+  }
 
   ngOnInit() {
     this.route.params.pipe(
       switchMap((params: Params) => {
         return this.taskService.getById(params['id'])
+         .pipe(
+            map((task: Task) => {
+              return {
+                ...task,
+                id: params['id'],
+                date: new Date(task.date)
+              }
+            })
+          )
       })
     ).subscribe((task: Task) => {
       this.task = task;

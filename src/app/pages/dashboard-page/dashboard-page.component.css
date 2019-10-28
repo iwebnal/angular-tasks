@@ -1,3 +1,4 @@
+
 .dashboard-table {
     width: 100%;
     padding: 20px 20px;
@@ -12,6 +13,7 @@
     background: #cccccc;
     padding: 10px 10px;
     color: #333;
+    vertical-align: top;
 }
 
 .dashboard-table tbody tr td {
@@ -68,10 +70,10 @@
 }
 
 .find-form input {
-    width: 80%;
-    height: 35px;
-    line-height: 37px;
-    margin-top: 20px;
+    width: 100%; /* 80% */
+    height: 25px;
+    line-height: 31px;
+    margin-top: 10px;
     padding-left: 10px;
 }
 

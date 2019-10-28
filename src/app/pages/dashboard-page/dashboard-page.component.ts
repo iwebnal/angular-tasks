@@ -1,15 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { TaskService } from 'src/app/shared/task.serice';
 import { Task } from 'src/app/shared/interfaces';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
+import { TaskService } from 'src/app/shared/services/task.service';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { map } from 'rxjs/operators';
 
-enum LoadingState {
-  none,
-  loading,
-  loaded
-} 
 
 @Component({
   selector: 'app-dashboard-page',
@@ -21,11 +17,11 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   tasks: Task[] = [];
   taskSubscription: Subscription;
   deleteSubscription: Subscription;
+  updateSubscription: Subscription;
   searchStr = '';
   sortColumn = '';
   sortDerection: number = 0;
   intervalId: any;
-  loadingState = LoadingState.none;
 
   constructor(
     private tasksService: TaskService,
@@ -36,21 +32,20 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getAll();
-    this.intervalId = setInterval(() => {
-      if(this.loadingState != LoadingState.loading) {
-        this.getAll();
-      }
-    }, 3000);
   }
 
   getAll() {
-    this.loadingState = LoadingState.loading;
-    this.taskSubscription = this.tasksService.getAll().subscribe( tasks => {
+    this.taskSubscription = this.tasksService.getAll().pipe(map((response: {[key: string]: any}) => {
+      return Object.keys(response)
+        .map(key => ({
+          ...response[key],
+          id: key,
+          date: new Date(response[key].date)
+        }));
+    })).subscribe( tasks => {
       this.tasks = tasks;
-      this.loadingState = LoadingState.loaded;
     })
   }
-
 
   remove(id: string) {
     this.deleteSubscription = this.tasksService.remove(id).subscribe(() => {
@@ -77,7 +72,5 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     if(this.deleteSubscription) {
       this.deleteSubscription.unsubscribe();
     }
-
-    clearInterval(this.intervalId);
   }
 }

@@ -1,0 +1,67 @@
+<div cdkDropListGroup class="scrum-wrapper">
+    <div class="example-container">
+        <h2>To do</h2>
+        <div
+            cdkDropList
+            #todoList="cdkDropList"
+            [cdkDropListData]="tasksTodo"
+            id="Todo"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of tasksTodo" cdkDrag>
+                <div class="scrum-block">
+                    <span class="scrum-label">Title: </span>
+                    <span class="scrum-text">{{item.title}}</span>
+                </div>
+                <div class="scrum-block">
+                    <span class="scrum-label">Status: </span>
+                    <span class="scrum-text">{{item.status}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="example-container">
+        <h2>Doing</h2>
+        <div
+            cdkDropList
+            #doneList="cdkDropList"
+            [cdkDropListData]="tasksDoing"
+            id="Doing"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of tasksDoing" cdkDrag>
+                <div class="scrum-block">
+                    <span class="scrum-label">Title: </span>
+                    <span class="scrum-text">{{item.title}}</span>
+                </div>
+                <div class="scrum-block">
+                    <span class="scrum-label">Status: </span>
+                    <span class="scrum-text">{{item.status}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="example-container">
+        <h2>Done</h2>
+        <div
+            cdkDropList
+            #doneEndList="cdkDropList"
+            [cdkDropListData]="tasksDone"
+            id="Done"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of tasksDone" cdkDrag>
+                <div class="scrum-block">
+                    <span class="scrum-label">Title: </span>
+                    <span class="scrum-text">{{item.title}}</span>
+                </div>
+                <div class="scrum-block">
+                    <span class="scrum-label">Status: </span>
+                    <span class="scrum-text">{{item.status}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

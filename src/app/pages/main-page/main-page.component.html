@@ -1,6 +1,9 @@
 <div class="nav-menu">
     <ul *ngIf="auth.isAuth()" class="nav-list">
         <li routerLinkActive="active">
+            <a [routerLink]="['/scrumboard']">Scrum view</a>
+        </li>
+        <li routerLinkActive="active">
             <a [routerLink]="['/dashboard']">Dashboard</a>
         </li>
         <li routerLinkActive="active">
@@ -10,4 +13,8 @@
             <a href="#" (click)="logout($event)">Logout</a>
         </li>
     </ul>
+</div>
+
+<div class="container">
+    <router-outlet></router-outlet>
 </div>

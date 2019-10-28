@@ -26,7 +26,8 @@ export interface FbCreateResponse {
 }
 
 export interface Priority {
-    name: string
+    name: string,
+    id: number
 }
 
 export interface Status {

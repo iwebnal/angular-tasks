@@ -1,22 +1,23 @@
-<div>
-    <nav-menu></nav-menu>
-</div>
 <div *ngIf="tasks.length; else loading">
-    <div class="find-form">
-        <input type="text" placeholder="Find task..." [(ngModel)]="searchStr">
-    </div>
     <table class="dashboard-table">
         <thead>
             <tr>
                 <th>#</th>
                 <th (click)="sort('title')" class="sort-name">
-                    <span>Name</span>
-                    <div class="sort-icon-box">
-                        <img *ngIf="sortDerection === -1" src="../../../assets/img/up-arrow.png" class="sort-icon" title="Sort column">
-                        <img *ngIf="sortDerection === 1" src="../../../assets/img/down-arrow.png" class="sort-icon" title="Sort column">
+                    <div>
+                        <span>Name</span>
+                        <div class="sort-icon-box">
+                            <img *ngIf="sortDerection === -1" src="../../../assets/img/up-arrow.png" class="sort-icon" title="Sort column">
+                            <img *ngIf="sortDerection === 1" src="../../../assets/img/down-arrow.png" class="sort-icon" title="Sort column">
+                        </div>
+                    </div>
+                    <div class="find-form">
+                        <input type="text" placeholder="Find by title..." [(ngModel)]="searchStr">
                     </div>
                 </th>
-                <th>Date</th>
+                <th>
+                    <div>Date</div>
+                </th>
                 <th>Author</th>
                 <th>Action</th>
             </tr>
